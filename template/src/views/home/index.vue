@@ -2,34 +2,34 @@
   <div id="home">
     <!-- html内引入资源带~ -->
     <img src="@/assets/img/logo.png">
-    <h1>\{{ msg }}</h1><% if (router) { %>
-    <home-nav></home-nav><% } %>
+    <h1>\{{ msg }}</h1>{{#router}}
+    <home-nav></home-nav>{{/router}}
   </div>
 </template>
 
-<script><% if (vuex) { %>
-import { mapGetters } from 'vuex';<% } %><% if (router) { %>
-import HomeNav from './components/nav.vue';<% } %>
+<script>{{#vuex}}
+import { mapGetters } from 'vuex';{{/vuex}}{{#router}}
+import HomeNav from './components/nav.vue';{{/router}}
 
 export default {
   data() {
-    return {<% if (!vuex) { %>
-      msg: 'Welcome to Your Vue.js App',<% } %>
+    return {
+{{#if_eq vuex false}}      msg: 'Welcome to Your Vue.js App',{{/if_eq}}
     };
-  },<% if (router) { %>
+  },{{#router}}
   components: {
     HomeNav,
-  },<% } %><% if (vuex) { %>
+  },{{/router}}{{#vuex}}
   computed: {
     ...mapGetters({
       msg: 'home/msg',
     }),
-  },<% } %>
+  },{{/vuex}}
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style<% if (cssPreprocessor === 'less') { %> lang="less"<% } %>>
+<style{{#if_eq cssPreprocessor 'less'}} lang="less"{{/if_eq}}>
 #home {
   text-align: center;
   margin-top: 60px;

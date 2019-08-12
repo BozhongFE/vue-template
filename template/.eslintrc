@@ -44,6 +44,6 @@
     "window": true,
     "navigator": true,
     "require": true,
-    "API": true,
+    "API": true
   }
 }
