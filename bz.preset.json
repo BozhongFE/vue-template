@@ -1,0 +1,19 @@
+{
+  "template": {
+    "filters": {
+      "src/vuex/**/*": "vuex",
+      "src/router/**/*": "router",
+      "src/router/history.js": "routerHistoryMode",
+      "src/views/404.vue": "router",
+      "src/views/sitemap.vue": "router",
+      "src/views/home/components/nav.vue": "router",
+      "bz.config.js": "false"
+    }
+  },
+  "destination": {
+    "removes": {
+      "src/router.js": "routerHistoryMode",
+      "src/assets/logo.png": "true"
+    }
+  }
+}
