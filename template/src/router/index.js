@@ -1,15 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';{{#routerHistoryMode}}
-import history from './history';
 
-const router = new VueRouter(history.transformBefore({
+// eslint-disable-next-line
+console.log(publicFullPath);
+const router = new VueRouter({
   routes,
   mode: 'history',
   // 外链访问的路径，publicPath 在 webpack 中配置
   // eslint-disable-next-line
-  base: publicPath,
-}));{{ else }}
+  base: publicFullPath,
+});{{ else }}
+
 const router = new VueRouter({
   routes,
 });{{/routerHistoryMode}}

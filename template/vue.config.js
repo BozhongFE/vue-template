@@ -1,11 +1,12 @@
 const appConfig = require('./app.config');
 
-const config = module.exports = {
+module.exports = {
+{{#source}}  outputDir: appConfig.outputPath,{{/source}}{{#dynamicLoadScript}}
+  publicPath: appConfig.projectPath,
   pages: {
     index: {
       entry: 'src/main.js',
       template: 'public/index.html',
-      outputDir: appConfig.outputPath,
       filename: 'index.html',
       title: '首页',
       chunks: ['chunk-vendors', 'chunk-common', 'index'],
@@ -14,7 +15,8 @@ const config = module.exports = {
       projectPath: appConfig.projectPath,
       publicPath: appConfig.publicPath,
     }
-  },
+  },{{else}}
+  publicPath: './',{{/dynamicLoadScript}}
   configureWebpack: {
     resolve: {
       alias: {
