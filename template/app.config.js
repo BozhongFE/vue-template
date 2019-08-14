@@ -1,21 +1,22 @@
-const path = require('path');
-const assert = require('assert');
-const { copySync, existsSync } = require('fs-extra');
+const path = require('path');{{#dynamicLoadScript}}
+const assert = require('assert');{{/dynamicLoadScript}}{{#source}}
+const { existsSync } = require('fs');{{/source}}
 
 const {
-  NPM_CLI_JS: isNpm,
-  NODE_ENV: env,
-  npm_config_source: npmConfigSource,
-} = process.env;
-const sourcePath = isNpm ? npmConfigSource : 'npm_config_source';
+{{#dynamicLoadScript}}  NODE_ENV: env,
+{{/dynamicLoadScript}}{{#source}}  NPM_CLI_JS: isNpm,
+  npm_config_source: npmConfigSource,{{/source}}
+} = process.env;{{#source}}
+const sourcePath = isNpm ? npmConfigSource : 'npm_config_source';{{/source}}{{#dynamicLoadScript}}
 const isDev = env === 'development';
-const isProduct = env === 'production';
+const isProduct = env === 'production';{{/dynamicLoadScript}}
 const appConfig = {
-  publicPath: '/wcl/cropper/',
+{{#dynamicLoadScript}}  publicPath: '/wcltest/hello/',
   projectPath: '/cropper/',
-  outputPath: path.resolve(sourcePath, './cropper/'),
   bzConfigPath: '/common/js/config.js',
+{{/dynamicLoadScript}}{{#source}}  outputPath: path.resolve(sourcePath, './cropper/'),{{/source}}
 }
+{{#dynamicLoadScript}}
 /**
  * env: development
  */
@@ -33,6 +34,8 @@ if (isProduct) {
   assert(appConfig.publicPath, 'publicPath 填写项目发布地址的路径');
   assert(appConfig.projectPath, 'projectPath 填写项目打包输出的路径');
 }
+{{/dynamicLoadScript}}
+{{#source}}
 /**
  * env: npm run xxx
  */
@@ -44,21 +47,5 @@ if (isNpm) {
   } else if (!existsSync(sourcePath)) {
     throw new Error('source根目录不存在，请检查配置的 source 根目录是否正确');
   }
-}
-/**
- * 将分享图复制到输出目录
- */
-appConfig.CopyShareImg = class CopyShareImg {
-  apply(compiler) {
-    compiler.plugin('done', (compilation, callback) => {
-      console.log('开始将分享图复制到输出目录');
-      const shareExists =  existsSync(path.resolve(__dirname, './src/assets/img/share'));
-      if (!shareExists) {
-        return console.log('分享源图目录不存在', './src/assets/img/share/');
-      }
-      copySync(path.resolve(__dirname, './src/assets/img/share'), path.resolve(outputPath));
-      return callback && callback;
-    });
-  }
-};
+}{{/source}}
 module.exports = appConfig;

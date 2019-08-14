@@ -7,7 +7,7 @@ console.log(publicFullPath);
 const router = new VueRouter({
   routes,
   mode: 'history',
-  // 外链访问的路径，publicPath 在 webpack 中配置
+  // 外链访问的路径，publicPath 在 app.config.js 中配置
   // eslint-disable-next-line
   base: publicFullPath,
 });{{ else }}
