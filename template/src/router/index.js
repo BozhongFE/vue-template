@@ -2,8 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';{{#routerHistoryMode}}
 
-// eslint-disable-next-line
-console.log(publicFullPath);
 const router = new VueRouter({
   routes,
   mode: 'history',

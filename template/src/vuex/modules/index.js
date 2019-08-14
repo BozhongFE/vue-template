@@ -1,6 +1,5 @@
-
 import home from './home';
 
-export {
+export default {
   home,
 };

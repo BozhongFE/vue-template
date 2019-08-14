@@ -1,4 +1,4 @@
-import * as getters from './getters';
+import getters from './getters';
 
 const state = {
   msg: 'Welcome to Your Vue.js App',

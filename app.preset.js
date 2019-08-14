@@ -57,7 +57,11 @@ module.exports = {
     removes: {
       'src/store.js': 'vuex',
       'src/router.js': 'router',
-      'src/assets/logo.png': 'true'
+      'src/views/About.vue': 'router',
+      'src/views/Home.vue': 'router',
+      'src/router.js': 'router',
+      'src/assets/logo.png': 'true',
+      'public/favicon.ico': 'true'
     },
     transforms: {
       'package.json': (content, preset, _) => {
