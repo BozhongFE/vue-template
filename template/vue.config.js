@@ -17,19 +17,5 @@ module.exports = {
     }
   },
 {{else}}  publicPath: './',
-{{/dynamicLoadScript}}  configureWebpack: {
-    resolve: {
-      alias: {
-        vue$: 'vue/dist/vue.esm.js',
-      },
-    },
-  },
-  chainWebpack: config => {
-    config.plugins.delete('preload');
-    config.plugins.delete('prefetch');
-  },
-  devServer: {
-    sockPort: 8080,
-    disableHostCheck: true,
-  },
+{{/dynamicLoadScript}}  
 };
